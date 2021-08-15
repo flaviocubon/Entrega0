@@ -139,3 +139,22 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.soldCount {
+  padding-right: 10px;
+}
+
+.listProducts {
+  width: auto;
+}
+
+.imgCar {
+  width: 50%;
+  height: 200%;
+}
+
+.descCar {
+  width: 50%;
+}
+
+
