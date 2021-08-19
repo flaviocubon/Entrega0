@@ -49,4 +49,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     localStorage.setItem("logged","waiting");
     window.location = "login.html";
   }
+  if (id_token != undefined) {
+    window.location="index.html";
+ }    
 });
