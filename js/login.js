@@ -15,10 +15,11 @@ const buttonLogin = () => {
     }
     else
     {
-        alert("Debe ingresar datos validos.")
+        alert("Los campos no deben estar vacios")
     }
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("login").addEventListener("click", buttonLogin);
+    localStorage.clear();
 });

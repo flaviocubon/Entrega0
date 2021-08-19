@@ -157,4 +157,7 @@ a.custom-card:hover {
   width: 50%;
 }
 
+body.login {
+  background-color: #f8f9fa;
+}
 
