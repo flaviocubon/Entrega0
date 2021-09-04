@@ -139,3 +139,39 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.soldCount {
+  padding-right: 10px;
+}
+
+.listProducts {
+  width: auto;
+}
+
+.imgCar {
+  width: 50%;
+  height: 200%;
+}
+
+.descCar {
+  width: 50%;
+}
+
+body.login {
+  background-color: #f8f9fa;
+}
+
+.userSign {
+  color: white;
+  margin-left: 30%;
+}
+
+#navigationDiv {
+  margin-right: 10%;
+  margin-left: 30%;
+  width: 100%;
+}
+
+.filter {
+  padding-bottom: 12px;
+}
