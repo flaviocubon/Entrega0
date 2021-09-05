@@ -4,13 +4,14 @@
 
 //Constante que contiene la URL con la información de los diferentes productos.
 const URL_INF = "https://japdevdep.github.io/ecommerce-api/product/all.json";
-
+var currentProductsArray = "";
 //Función para añadir una tabla con la información obtenida.
 const showList = (info) => {
     //Se crea un contenedor para todo lo referido a la informacion obtenida mediante el parametro info.
     const productsContainer = document.createElement("div");
     productsContainer.classList.add("list-group")
     document.getElementById("productsList")
+    currentProductsArray= info;
     //Se crea una variable para almacenar el html que se añadira con la lista de articulos.
 
     for (let i of info) {
@@ -41,47 +42,51 @@ const showList = (info) => {
     document.getElementById("productsList").appendChild(productsContainer);
 }
 
+//Se define una funcion que selecciona que productos mostrar segun el precio ingreasdo
 const priceFilter = (info) => {
-    console.log("hola");
     const precioMax = document.getElementById("pricemax-value").value;
     const precioMin = document.getElementById("pricemin-value").value;
     var ordArray = new Array();
     let contador = 0;
     for (let i of info) {
-        if ((precioMax >= i.cost) && (i.cost >= precioMin)) {
+        if (((precioMax === "") && (precioMin <= i.cost)) || ((precioMin === "") && (precioMax >= i.cost)) || ((precioMax >= i.cost) && (i.cost >= precioMin))) {
             ordArray[contador] = i;
-            console.log(ordArray);
             contador += 1;
         }
     }
+    //Se sustituye la informacion inicial por la informacion filtrada
     document.getElementById("productsList").innerHTML = "";
     showList(ordArray);
 }
 
+//Se define una funcion que se encarga de ordenar los productos segun su precio
 const priceSort = (info) => {
     var buttom = document.getElementById("priceButtom");
-    if (buttom.className === "fas mr-1 fa-sort-amount-down") {
+    //En caso de que se ordene de forma descendente el boton cambia de apariencia a la forma ascendente
+    if (buttom.className === "fas mr-1 fa-sort-amount-up") {
         info.sort(function (a, b) {
             return a.cost - b.cost;
-        });
-        buttom.className = "fas mr-1 fa-sort-amount-up";
-        document.getElementById("productsList").innerHTML = "";
-        showList(info);
-    }
-    else if (buttom.className === "fas mr-1 fa-sort-amount-up") {
-        info.sort(function (a, b) {
-            return b.cost - a.cost;
         });
         buttom.className = "fas mr-1 fa-sort-amount-down";
         document.getElementById("productsList").innerHTML = "";
         showList(info);
     }
+    //En caso de que se ordene de forma ascendente el boton cambia de apariencia a la forma descendente
+    else if (buttom.className === "fas mr-1 fa-sort-amount-down") {
+        info.sort(function (a, b) {
+            return b.cost - a.cost;
+        });
+        buttom.className = "fas mr-1 fa-sort-amount-up";
+        document.getElementById("productsList").innerHTML = "";
+        showList(info);
+    }
 }
 
+//Se define una funcion que ordena la informacion segun la cantidad de productos vendidos
 const relevanceSort = (info) => {
 
     info.sort(function (a, b) {
-        return a.soldCount - b.soldCount;
+        return b.soldCount - a.soldCount;
     });
     document.getElementById("productsList").innerHTML = "";
     showList(info);
@@ -92,15 +97,16 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     const info = (await getJSONData(URL_INF)).data;
     showList(info); 
 
+    //Se les agrega un evento de "clickeo" a los diferentes botones correspondiente al orden
     document.getElementById("filter").addEventListener("click", function () {
         priceFilter(info);
     });
 
     document.getElementById("sortByPrice").addEventListener("click", function () {
-        priceSort(info);
+        priceSort(currentProductsArray);
     });
 
     document.getElementById("sortByRelevance").addEventListener("click", function () {
-        relevanceSort(info);
+        relevanceSort(currentProductsArray);
     });
 });

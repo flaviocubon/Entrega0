@@ -52,9 +52,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     localStorage.setItem("logged", "waiting");
     window.location = "login.html";
   }
+
+  //Se crea un "cartel" donde se colocara el nombre de usuario y se añade a la barra de navegacion cuando se entra a una de las paginas
   let userSign = document.createElement("div");
   userSign.classList.add("userSign");
-  userSign.innerHTML = `<span class="py-2 d-none d-md-inline-block" > ${localStorage.getItem("email")} </span>`;
+  userSign.innerHTML = `<span class="py-2 d-none d-md-inline-block text-white" > ${localStorage.getItem("email")} </span>`;
+  
+  //Solo se agrega en caso de que la pagina sea diferente de login.html ya que esta no contiene una barra de navegacion
   if ((currentPage[currentPage.length - 1] != "login.html")) {
     document.getElementById("navigationDiv").appendChild(userSign);
   }
