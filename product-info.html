@@ -25,22 +25,32 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
     </div>
   </nav>
+  <div class="text-center p-4">
+    <h2>Descripción de la categoría</h2>
+    <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+  <div class="container" id="productinfo">
+  </div>
+  <div class="container" id="productinfoImagesGallery" class="row text-center text-lg-left pt-2">
+  </div>
+  <div id="commentsList" class="container commentsContaier">
+    <h4>Comentarios</h4>
+  </div>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 19/09/2021) y Entrega 4 (Fecha de entrega: 03/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div id="newcomment-box">
+      <label for="newcomment"> Comentario </label>
+      <textarea class="form-control comment-area" id="userComment" rows="4"></textarea>
+      <div class="rating">
+        <i class="rating__star far fa-star"></i>
+        <i class="rating__star far fa-star"></i>
+        <i class="rating__star far fa-star"></i>
+        <i class="rating__star far fa-star"></i>
+        <i class="rating__star far fa-star"></i>
+         </div>
+
+        <input type="button" value="Publicar" id="publish" class="btn btn-primary btn-block" />
+      </div>
     </div>
   </div>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
   </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">

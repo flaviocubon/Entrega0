@@ -175,3 +175,27 @@ body.login {
 .filter {
   padding-bottom: 12px;
 }
+
+#newcomment-box {
+  width: 100%;
+}
+
+#imgInfo {
+  padding-right: 0px;
+}
+
+.commentsScore {
+  padding-left: 300px;
+}
+
+#commentsList {
+    padding-top: 20px;
+}
+
+#productinfo {
+  text-align: left;
+}
+
+#commentsList {
+  text-align: left;
+}
