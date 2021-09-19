@@ -15,7 +15,6 @@ const buttonLogin = () => {
     }
     else
     {
-        //En caso de que los campoes esten vacios se notifica al usuario.
         alert("Los campos no deben estar vacios")
     }
 }
@@ -26,4 +25,5 @@ document.addEventListener("DOMContentLoaded", function(e){
     //Limpiamos localStorage para que el usuario no pueda ingresar a la pagina si un login quedo a la mitad del proceso, ya que en caso de que
     //ejecute el login, esta linea no se ejecutara, quedando almacenados sus datos
     localStorage.clear();
+
 });

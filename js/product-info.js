@@ -1,56 +1,6 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-const showcomments = (comments) => {
-  //Se crea un contenedor para todo lo referido a la informacion obtenida mediante el parametro info.
-  const commentsContainer = document.createElement("div");
-  commentsContainer.classList.add("list-group")
-  document.getElementById("commentsList")
-  for (let i of comments.data) {
-    let htmlContentToAppend = "";
-    htmlContentToAppend = `
-                <div class="row list-group-item">
-                    <div class="row">
-                    <div class="descCar col">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="mb-1"> ${i.user} </h4>
-                            <small class="text-muted soldCount"> Fecha: ${i.dateTime} </small>
-                        </div>
-                        <p class="mb-1">
-                            <ul>
-                                <li> ${i.description} </li>
-                            </ul> 
-                        </p>
-                    </div>
-                    <div class="col-5">
-                        <span class="commentsScore"> Puntaje: ${i.score}/5 </span>
-                    </div>
-                    </div>
-                </div>
-            `
-    commentsContainer.innerHTML += htmlContentToAppend;
-  }
-  document.getElementById("commentsList").appendChild(commentsContainer);
-}
-
-function executeRating(stars) {
-  const starClassActive = "rating__star fas fa-star";
-  const starClassInactive = "rating__star far fa-star";
-  const starsLength = stars.length;
-  let i;
-  stars.map((star) => {
-    star.onclick = () => {
-      i = stars.indexOf(star);
-
-      if (star.className === starClassInactive) {
-        for (i; i >= 0; --i) stars[i].className = starClassActive;
-      } else {
-        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
-      }
-    };
-  });
-}
-
 const showInfo = (info) => {
   var productsContainer = document.createElement("div");
   productsContainer.classList.add("list-group")
@@ -112,9 +62,64 @@ const showInfo = (info) => {
   productsContainer.innerHTML += htmlContentToAppend;
   document.getElementById("productinfo").appendChild(productsContainer);
 }
+//Función dedicada a la carga de comentarios del JSON
+const showcomments = (comments) => {
+  //Se crea un contenedor para todo lo referido a la informacion obtenida mediante el parametro info.
+  const commentsContainer = document.createElement("div");
+  commentsContainer.classList.add("list-group")
+  document.getElementById("commentsList")
+  for (let i of comments.data) {
+    let htmlContentToAppend = "";
+    htmlContentToAppend = `
+                <div class="row list-group-item">
+                    <div class="row">
+                    <div class="descCar col">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="mb-1"> ${i.user} </h4>
+                            <small class="text-muted soldCount"> Fecha: ${i.dateTime} </small>
+                        </div>
+                        <p class="mb-1">
+                            <ul>
+                                <li> ${i.description} </li>
+                            </ul> 
+                        </p>
+                    </div>
+                    <div class="col-5">
+                        <span class="commentsScore"> Puntaje: ${i.score}/5 </span>
+                    </div>
+                    </div>
+                </div>
+            `
+    commentsContainer.innerHTML += htmlContentToAppend;
+  }
+  document.getElementById("commentsList").appendChild(commentsContainer);
+}
+//Funcion dedicada al manejo y coloreado de las estrellas de puntuación
+function executeRating(stars) {
+  const starClassActive = "rating__star fas fa-star";
+  const starClassInactive = "rating__star far fa-star";
+  const starsLength = stars.length;
+  let i;
+  stars.map((star) => {
+    star.onclick = () => {
+      i = stars.indexOf(star);
 
+      if (star.className === starClassInactive) {
+        for (i; i >= 0; --i) stars[i].className = starClassActive;
+      } else {
+        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+      }
+    };
+  });
+}
+//Funcion que limpia el area de texto
 const publish = (commentText) => {
-  commentText.value = "";
+  if (commentText.value === "") {
+    alert('El campo no debe estar vacio')
+  }
+  else
+  {
+  commentText.value = ""; 
   const ratingStars = [...document.getElementsByClassName("rating__star")];
   const starClassInactive = "rating__star far fa-star";
   const starClassActive = "rating__star fas fa-star";
@@ -124,6 +129,7 @@ const publish = (commentText) => {
     }
   }
   alert('Su comentario ha sido publicado con exito.')
+ }
 }
 
 

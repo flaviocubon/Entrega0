@@ -43,14 +43,11 @@ var getJSONData = function (url) {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
   //Almacenamos la pagina en la que se encuentra el usuario
-  var currentPage = window.location.pathname.split("/");
-  //Si el usuario no esta logueado y la pagina mostrada no es la correspondiente al ingreso del mismo se lo envia a la misma
-  if ((localStorage.getItem("logged") === null) && (currentPage[currentPage.length - 1] != "login.html")) {
-    //Se crea un elemento que deja saber al programa que el usuario esta en el proceso de login, evitando la repeticion del codigo
-    localStorage.setItem("logged", "waiting");
+  var currentPage= window.location.pathname.split("/");
+  if ((localStorage.getItem("logged") === null) && (currentPage[currentPage.length-1] != "login.html")) {
+    localStorage.setItem("logged","waiting");
     window.location = "login.html";
-  }
-
+}
   //Se crea un "cartel" donde se colocara el nombre de usuario y se añade a la barra de navegacion cuando se entra a una de las paginas
   let userSign = document.createElement("div");
   userSign.classList.add("userSign");
