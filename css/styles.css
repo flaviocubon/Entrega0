@@ -198,4 +198,12 @@ body.login {
 
 #commentsList {
   text-align: left;
+  box-shadow: black;
+}
+
+.carrouselCar {
+  align-items: center;
+  width:500px; 
+  height: 300px !important;
+  margin: auto;
 }

@@ -18,7 +18,6 @@ const showList = (info) => {
         let htmlContentToAppend = "";
         htmlContentToAppend = `
          <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row list-group-item">
                     <div class="row">
                     <div class="descCar col">
                         <div class="d-flex justify-content-between">
@@ -36,7 +35,6 @@ const showList = (info) => {
                         <img src="${i.imgSrc}" alt="${i.name}" class="img-thumbnail">
                     </div>
                     </div>
-                </div>
             </a>
             `
         productsContainer.innerHTML += htmlContentToAppend;

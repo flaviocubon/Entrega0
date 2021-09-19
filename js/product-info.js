@@ -2,14 +2,13 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 const showcomments = (comments) => {
-    //Se crea un contenedor para todo lo referido a la informacion obtenida mediante el parametro info.
-    const commentsContainer = document.createElement("div");
-    commentsContainer.classList.add("list-group")
-    document.getElementById("commentsList")
-    //Se crea una variable para almacenar el html que se añadira con la lista de articulos.
-    for (let i of comments.data) {
-        let htmlContentToAppend = "";
-        htmlContentToAppend = `
+  //Se crea un contenedor para todo lo referido a la informacion obtenida mediante el parametro info.
+  const commentsContainer = document.createElement("div");
+  commentsContainer.classList.add("list-group")
+  document.getElementById("commentsList")
+  for (let i of comments.data) {
+    let htmlContentToAppend = "";
+    htmlContentToAppend = `
                 <div class="row list-group-item">
                     <div class="row">
                     <div class="descCar col">
@@ -29,17 +28,34 @@ const showcomments = (comments) => {
                     </div>
                 </div>
             `
-        commentsContainer.innerHTML += htmlContentToAppend;
-    }
-    document.getElementById("commentsList").appendChild(commentsContainer);
+    commentsContainer.innerHTML += htmlContentToAppend;
+  }
+  document.getElementById("commentsList").appendChild(commentsContainer);
 }
+
+function executeRating(stars) {
+  const starClassActive = "rating__star fas fa-star";
+  const starClassInactive = "rating__star far fa-star";
+  const starsLength = stars.length;
+  let i;
+  stars.map((star) => {
+    star.onclick = () => {
+      i = stars.indexOf(star);
+
+      if (star.className === starClassInactive) {
+        for (i; i >= 0; --i) stars[i].className = starClassActive;
+      } else {
+        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+      }
+    };
+  });
+}
+
 const showInfo = (info) => {
-    //Se crea un contenedor para todo lo referido a la informacion obtenida mediante el parametro info.
-    var productsContainer = document.createElement("div");
-    productsContainer.classList.add("list-group")
-    //Se crea una variable para almacenar el html que se añadira con la lista de articulos.
-        let htmlContentToAppend = "";
-        htmlContentToAppend = `
+  var productsContainer = document.createElement("div");
+  productsContainer.classList.add("list-group")
+  let htmlContentToAppend = "";
+  htmlContentToAppend = `
                 <div class="row list-group-item">
                     <div class="row">
                     <div class="descCar col">
@@ -57,51 +73,71 @@ const showInfo = (info) => {
                     </div>
                 </div>
             `
-            htmlContentToAppend +=     `
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src=" ${info.images[0]}" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src=" ${info.images[1]}" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src=" ${info.images[2]}" alt="Third slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src=" ${info.images[3]}" alt="Third slide">
-    </div>
-    <div class="carousel-item">
-    <img class="d-block w-100" src=" ${info.images[4]}" alt="Third slide">
-  </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+  htmlContentToAppend += `
+            <div id="carouselExampleIndicators" class="carousel slide carrouselCar" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src=" ${info.images[0]}" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src=" ${info.images[1]}" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src=" ${info.images[2]}" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src=" ${info.images[3]}" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                <img class="d-block w-100" src=" ${info.images[4]}" alt="Third slide">
+              </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           `
-        productsContainer.innerHTML += htmlContentToAppend;
-        document.getElementById("productinfo").appendChild(productsContainer);
+  productsContainer.innerHTML += htmlContentToAppend;
+  document.getElementById("productinfo").appendChild(productsContainer);
+}
+
+const publish = (commentText) => {
+  commentText.value = "";
+  const ratingStars = [...document.getElementsByClassName("rating__star")];
+  const starClassInactive = "rating__star far fa-star";
+  const starClassActive = "rating__star fas fa-star";
+  for (let i = 0; i < ratingStars.length ; i++) {
+    if (ratingStars[i].className === starClassActive) {
+      ratingStars[i].className = starClassInactive;
     }
-    
+  }
+  alert('Su comentario ha sido publicado con exito.')
+}
 
 
-document.addEventListener("DOMContentLoaded", async function(e){
-    const info = (await getJSONData(PRODUCT_INFO_URL)).data;
-    showInfo(info);
-    const comments= (await getJSONData(PRODUCT_INFO_COMMENTS_URL))
-    showcomments(comments);
+document.addEventListener("DOMContentLoaded", async function (e) {
+  const ratingStars = [...document.getElementsByClassName("rating__star")];
+  const info = (await getJSONData(PRODUCT_INFO_URL)).data;
+  showInfo(info);
+  const comments = (await getJSONData(PRODUCT_INFO_COMMENTS_URL))
+  showcomments(comments);
+  executeRating(ratingStars);
+  const commentText = document.getElementById("userComment");
+
+  document.getElementById("publish").addEventListener("click", function () {
+    publish(commentText);
+  });
+
 });
